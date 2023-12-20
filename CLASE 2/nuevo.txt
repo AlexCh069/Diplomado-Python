@@ -1,0 +1,18 @@
+Fila numero: 0
+Fila numero: 1
+Fila numero: 2
+Fila numero: 3
+Fila numero: 4
+Fila numero: 5
+Fila numero: 6
+Fila numero: 7
+Fila numero: 8
+Fila numero: 9
+Letra de Damocles: D
+Letra de Damocles: a
+Letra de Damocles: m
+Letra de Damocles: o
+Letra de Damocles: c
+Letra de Damocles: l
+Letra de Damocles: e
+Letra de Damocles: s
