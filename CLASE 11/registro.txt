@@ -1,0 +1,2 @@
+Función 'ejemplo' - Tiempo: 2.001748561859131 segundos
+Función 'otra_funcion' - Tiempo: 1.0006725788116455 segundos
