@@ -3,7 +3,7 @@ from db_articulos import Articulos
 
 def run():
 
-    articulo_add = Articulos(codigo=3, descripcion='fresa', precio=13)
+    articulo_add = Articulos(codigo=1, descripcion='fresa', precio=13)
 
     db_sqlite.session.add(articulo_add)
     db_sqlite.session.commit()
