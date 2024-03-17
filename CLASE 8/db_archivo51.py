@@ -106,6 +106,8 @@ class FormularioArticulos:
             self.precio.set('')             # Borramos lo mostrado
             mb.showinfo("Información", "No existe un artículo con dicho código")
 
+
+
     def listado_completo(self):
         self.pagina3 = ttk.Frame(self.cuaderno1)
         self.cuaderno1.add(self.pagina3, text="Listado completo")
@@ -148,9 +150,10 @@ class FormularioArticulos:
         self.boton1.grid(column=1, row=1, padx=4, pady=4)
 
     def borrar(self):
-        datos=(self.codigoborra.get(), )
-        cantidad=self.articulo1.baja(datos)
-        if cantidad==1:
+        cod =( self.codigoborra.get())
+        articulo_delet = funt.delete_articulo(cod)
+
+        if articulo_delet:
             mb.showinfo("Información", "Se borró el artículo con dicho código")
         else:
             mb.showinfo("Información", "No existe un artículo con dicho código")
@@ -189,22 +192,27 @@ class FormularioArticulos:
         self.boton2.grid(column=1, row=4, padx=4, pady=4)
 
     def modifica(self):
-        datos=(self.descripcionmod.get(), self.preciomod.get(), self.codigomod.get())
-        cantidad=self.articulo1.modificacion(datos)
-        if cantidad==1:
+
+        respuesta = funt.modify_articulos(int(self.codigomod.get()), 
+                                          self.descripcionmod.get(),
+                                          float(self.preciomod.get()))
+        
+        if respuesta:
             mb.showinfo("Información", "Se modificó el artículo")
         else:
             mb.showinfo("Información", "No existe un artículo con dicho código")
 
     def consultar_mod(self):
-        datos=(self.codigomod.get(), )
-        respuesta=self.articulo1.consulta(datos)
-        if len(respuesta)>0:
-            self.descripcionmod.set(respuesta[0][0])
-            self.preciomod.set(respuesta[0][1])
+        dato = self.codigomod.get()     # Obtengo el valor de la variable self.codigo
+        
+        respuesta = funt.view_cod(dato)
+
+        if respuesta != None:
+            self.descripcionmod.set(respuesta[0])
+            self.preciomod.set(respuesta[1])
         else:
-            self.descripcionmod.set('')
-            self.preciomod.set('')
+            self.descripcionmod.set('')        # Borramos lo mostrado
+            self.preciomod.set('')             # Borramos lo mostrado
             mb.showinfo("Información", "No existe un artículo con dicho código")
 
 

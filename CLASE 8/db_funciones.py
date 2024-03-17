@@ -22,7 +22,6 @@ def view_cod(cod: int): # Encontramos dato por codigo
     else:
         return None
 
-
 def view_all(): # Obtener todos los registros de la tabla Articulos
     registros = db_sqlite.session.query(Articulos).all()
 
@@ -32,15 +31,37 @@ def view_all(): # Obtener todos los registros de la tabla Articulos
 
     return registros
 
+def delete_articulo(cod: str): # Borrar articulos por codigo
 
+    dato = db_sqlite.session.query(Articulos).filter_by(codigo=cod).first()
 
-def modify_articulos():
+    if dato != None:
+        db_sqlite.session.query(Articulos).filter_by(codigo = cod).delete() # Borramos el dato
+        db_sqlite.session.commit()  # Confirmar el borrado
+        db_sqlite.session.close()   # Cerramos la conexion con la db
+        return True
+    
+    else:
+        return False
+
+def modify_articulos(cod: int, descrip: str, price: float):  # Modificar registro por codigo (no cambiamos codigo)
     # Consultar el registro con un código específico
-    articulo = db_sqlite.session.query(Articulos).filter_by(codigo=9).first()
+    articulo = db_sqlite.session.query(Articulos).filter_by(codigo = cod).first()    # Buscamos el dato
 
-    # Modificar el precio
-    articulo.precio = 14
+    if articulo != None:
+        
+        # Modificamos descripcion y precio
+        articulo.descripcion = descrip
+        articulo.precio = price
+    
+        db_sqlite.session.commit() # Confirmar los cambios
+        
+        return True
+    else:
+        return False
 
-    # Confirmar los cambios
-    db_sqlite.session.commit()
 
+       
+
+    
+    
